@@ -157,3 +157,69 @@ Data structures
 	Monotone queues / monotone stacks / sliding queues
 	Sliding queue using 2 stacks
 	Persistent segment tree
+How to solve an algorithm problem
+	1. Floyd-Warshall as a universal graph algorithm for V <= 500, Ford-Bellman, Dijkstra (E*logV, V^2), BFS for 0-1 edge weights, DFS, Topological Sorting
+	2. Disjoint sets for connected components.
+	3. Care to constraints (upper and sometimes lower). Try small examples. Case analysis (e.g. process small and large inputs separately).
+	4. Structure of the Answer. Answer can be very constrained (e.g. small sequences, values only from input set). Sometimes no need to give full answer (e.g. only count)
+	5. Simplify problem, e.g. consider d[i] = a[i] - b[i] instead of a[i] and b[i], or d[i] = a[i+1] - a[i]
+	6. Dynamic Proramming: shortest path for acyclic graph, knapsack, matrix chain, edit distance, mask, take/don't take, tsp, shape, use <= instead of =, swap argument and value. Optimizations: Segment Trees, Knuth optimization, convex hull, divide and konquer for monotonicity.
+	7. Write brute-force solution to find pattern, PolynomialInterpolation([[0, 0], [1, 3], [2, 1], [3, 3]], x), wolframalpha.com, oeis.org
+	8. Greedy, start with greatest, greedy sequential search, order by a, b, a/b, a-b, a+b
+	9. Merging small tree into a big one, obtaining O(n*log(n)) transitions
+	10. Unite n lists in O(n)
+	11. MinCut / MaxFlow (of Min Cost), Max Matching
+	12. Brute Force, Precalculation, Precalculation on Prefixes / Suffixes, Bit-level parallelism
+	13. Counting Sort
+	14. Two Pointers
+	15. Meet In The Middle +  2 Pointers
+	16. Scan line with events
+	17. Binary search (average, median), ternary search, Binary search + Greedy,  Binary search + DP , Binary Search + Two Pointers
+	18. Union find
+	19. SQRT-decomposition, Sparse Table, Query Caching
+	20. Segment Tree, Treap, Persistent Tree, Kd-tree
+	21. Minimum Spanning Tree, Strongly Connected Components, 2-SAT, Biconnected Components, LCA, Eulerian path, Dilworth's theorem, Transform to Bipartite Graph
+	22. Assume that we have decompositions into Strongly Connected Components and Biconnected Components of input graph
+	23. Hashing, Suffix Array, KMP, LCP, Suffix Automata, Aho-Corasick
+	24. Divide-and-konquer
+	25. Inclusion-exclusion
+	26. Put 2 neighbors (a+1, b), (a, b+1) into heap
+	27. Matrices, Gauss Elimination, Linear algebra for xor - problems
+	28. Randomized algorithm, Random Search, Shuffle
+	29. Symmetric strategy
+	30. Change of Coordinates X+Y, X-Y. Affine Transformation (c*x - d*y, -a*x + b*y)
+	31. Pigeonhole principle
+	32. Stirling numbers
+	33. Solve inverse problem (min / max)
+	34. Simplex algorithm
+	35. Grundy numbers
+	36. Traverse tree in dfs-order, subtrees map to segments
+	37. LIS, fix LIS in sequence and process other elements greedily
+	38. Max subarray, Marzullo's algorithm
+	39. Offline query (DQuery)
+	40. Euler formula: V - E + F = 2
+	41. Couting problems - try to find independent classes, double counting, combinations
+	42. Tree center
+	43. Sort-traverse-check
+	44. Linearity of Expectation
+	45. Sorting in optimization problems with arbitrary rearranging.
+	46. Calc smth to the left and to right of element. e.g. a[i] < a[j] < a[k], i<j <k
+	47. In greedy problems try all variants: from the smallest to the biggest, from the biggest to smallest.
+	48. Orthogonal segments or L1-metric - try use fenwick tree
+	49. "Incremental DP", e.g. dp[i][j] = f(dp[i-1][j-1], dp[i1][j]), use dp[a-b] instead of dp[a][b], reverse dp[x]>answer into dp[answer]->x, push-dp: dp[i+x]<dp[i]
+	50. If there is no optimal substructure - try something else than DP (e.g. greedy)
+	51. Find solution for n-1. Use it to find solution for n.
+	52. Decompose complicated problem into simple cases
+	53. Random-restart hill climbing
+	54. Separate queries into big and small. Cache big queries
+	55. Solve problem from the end
+	56. Start with a slow DP, then optimize it.
+	57. Add edges one by one, maintaining connected components with disjoint sets.
+	58. For palyndrome problems - move from edges to center: 0,n-1 ; 1,n-2 ; ...
+	59. Resolve transitivity with Floyd-Warshall
+	60. Replace minCostMaxflow with maxflow
+	61. Hierarchic structure with double size: h[i*2] <- h[i]
+	62. At each step process the minimum element and then remove it, if it is independent of the others
+	63. Calc min, max boundaries, check min <= x <= max, and prove that any x can be reached
+	64. Treat row and columns independently (Boomerang Farm)
+	65. Find tight lower bound and try to prove it is also upper bound. 

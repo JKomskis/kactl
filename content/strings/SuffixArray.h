@@ -19,7 +19,9 @@
 
 struct SuffixArray {
 	vi sa, lcp;
+	string str;
 	SuffixArray(string& s, int lim=256) { // or basic_string<int>
+		str = s;
 		int n = sz(s) + 1, k = 0, a, b;
 		vi x(all(s)+1), y(n), ws(max(n, lim)), rank(n);
 		sa = lcp = y, iota(all(sa), 0);
@@ -38,5 +40,52 @@ struct SuffixArray {
 		for (int i = 0, j; i < n - 1; lcp[rank[i++]] = k)
 			for (k && k--, j = sa[rank[i] - 1];
 					s[i + k] == s[j + k]; k++);
+	}
+
+	ii stringMatching(string &p) { // O(m log n)
+		int lo = 0, hi = sz(sa)-1, mid = lo;
+		while (lo < hi) { // find lower bound
+			mid = (lo+hi) / 2;
+			int res = string_view(str.data()+sa[mid]).compare(string_view(p.data()));
+    		(res >= 0) ? hi = mid : lo = mid+1;
+  		}
+  		//if (strncmp(T+SA[lo], P, m) != 0) return ii(-1, -1);
+		if (string_view(str.data()+sa[lo]) != string_view(p.data())) return ii(-1, -1);
+  		ii ans; ans.first = lo;
+  		lo = 0; hi = sz(sa)-1; mid = lo;
+		while (lo < hi) { // find upper bound
+			mid = (lo+hi) / 2;
+			//int res = strncmp(T+SA[mid], P, m);
+			int res = string_view(str.data()+sa[mid]).compare(string_view(p.data()));
+			(res > 0) ? hi = mid : lo = mid+1;
+		}
+  		//if (strncmp(T+SA[hi], P, m) != 0) --hi;
+		if (string_view(str.data()+sa[hi]) != string_view(p.data())) --hi;
+  		ans.second = hi;
+  		return ans;
+}
+
+	ii LRS() {  // longest repeated substring: O(n)
+		int i, idx = 0, maxLCP = -1;
+		for (i = 1; i < sz(lcp); ++i)
+			if (lcp[i] > maxLCP)
+				maxLCP = lcp[i], idx = i;
+		return ii(maxLCP, idx);
+	}
+
+
+	// owner describes which string the substring belongs to
+	// add code to ctor for index of special split character
+	// the check if idx < index
+	// int owner(int idx) { return (idx < n-m-1) ? 1 : 2; }
+
+	ii LCS() {
+		// returns longest common substring between two strings: O(n)
+		// assumes strings terminated by different special characters
+		int i, idx = 0, maxLCP = -1;
+		for (i = 1; i < sz(lcp); ++i)
+			if (owner(sa[i]) != owner(sa[i-1]) && lcp[i] > maxLCP)
+				maxLCP = lcp[i], idx = i;
+		return ii(maxLCP, idx);
 	}
 };
